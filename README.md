@@ -1,4 +1,4 @@
-# Spring JPS Practice Project
+# Spring JPA Practice Project
 #### Author: Bobby Plunkett
 #### Date Created: 05/02/2019
 
