@@ -1,9 +1,8 @@
 package com.bobbyplunkett.springWebAppExercise.model;
 
-import com.bobbyplunkett.springWebAppExercise.model.data.Grades;
-
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -21,7 +20,7 @@ public class Student {
     private Long id;
     private String firstName;
     private String lastName;
-    private Grades grade;
+    private String grade;
 
     @ManyToMany(mappedBy = "students")
     private Set<Club> clubs = new HashSet<>();
@@ -29,13 +28,13 @@ public class Student {
     public Student() {
     }
 
-    public Student(String firstName, String lastName, Grades grade) {
+    public Student(String firstName, String lastName, String grade) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.grade = grade;
     }
 
-    public Student(String firstName, String lastName, Grades grade, Set<Club> clubs) {
+    public Student(String firstName, String lastName, String grade, Set<Club> clubs) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.clubs = clubs;
@@ -50,11 +49,11 @@ public class Student {
         this.id = id;
     }
 
-    public Grades getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(Grades grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 
@@ -80,5 +79,29 @@ public class Student {
 
     public void setClubs(Set<Club> clubs) {
         this.clubs = clubs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(id, student.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", grade=" + grade +
+                ", clubs=" + clubs +
+                '}';
     }
 }
