@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Club Overview</title>
+</head>
+<body>
+<h1>Student Clubs</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Founded</th>
+        <th>Description</th>
+    </tr>
+    <tr th:each="club : ${clubs}">
+        <td th:text="${club.getId()}"></td>
+        <td th:text="${club.getName()}"></td>
+        <td th:text="${club.getFoundedDate()}"></td>
+        <td th:text="${club.getDescription()}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
