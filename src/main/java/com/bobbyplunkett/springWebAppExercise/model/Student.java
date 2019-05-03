@@ -18,9 +18,10 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
     private String grade;
+
+    @OneToOne
+    private ContactInfo contactInfo;
 
     @ManyToMany(mappedBy = "students")
     private Set<Club> clubs = new HashSet<>();
@@ -28,15 +29,13 @@ public class Student {
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String grade) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Student(ContactInfo contactInfo, String grade) {
+        this.contactInfo = contactInfo;
         this.grade = grade;
     }
 
-    public Student(String firstName, String lastName, String grade, Set<Club> clubs) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Student(ContactInfo contactInfo, String grade, Set<Club> clubs) {
+        this.contactInfo = contactInfo;
         this.clubs = clubs;
         this.grade = grade;
     }
@@ -57,20 +56,12 @@ public class Student {
         this.grade = grade;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public ContactInfo getContactInfo() {
+        return contactInfo;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
     }
 
     public Set<Club> getClubs() {
@@ -98,8 +89,9 @@ public class Student {
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstName='" + contactInfo.getFirstName() + '\'' +
+                ", lastName='" + contactInfo.getLastName() + '\'' +
+                ", age='" + contactInfo.getAge() + '\'' +
                 ", grade=" + grade +
                 ", clubs=" + clubs +
                 '}';
